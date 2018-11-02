@@ -1,0 +1,595 @@
+\chapter{Fourierova analýza}
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+
+\section{Fourierova řada}
+
+Fourierova řada je vlastně rozvoj libovolné periodické funkce $f(x)$ do nekonečné řady sinů a kosinů. Tento rozvoj využívá ortogonality funkcí sinus a kosinus, která je popsána těmito identitami:
+
+\begin{equation}
+\int\limits_{-\pi}^{\pi} \sin(mx) \sin(nx) dx = \pi \delta_{mn},
+\end{equation}
+
+\begin{equation}
+\int\limits_{-\pi}^{\pi} \cos(mx) \cos(nx) dx = \pi \delta_{mn},
+\end{equation}
+
+\begin{equation}
+\int\limits_{-\pi}^{\pi} \sin(mx) \cos(nx) dx = 0,
+\end{equation}
+
+\begin{equation}
+\int\limits_{-\pi}^{\pi} \sin(mx) dx = 0,
+\end{equation}
+
+\begin{equation}
+\int\limits_{-\pi}^{\pi} \cos(mx) dx = 0,
+\end{equation}
+
+kde $m,n \in \Nbb$, $m,n \neq 0$ a $\delta_{mn}$ je Kronekerovo delta. Protože funkce $\sin(mx)$ a $\cos(mx)$ tvoří úplný ortogonální systém na intervalu $[-\pi,\pi]$, lze libovolnou periodickou funkci na tomto intervalu rozložit do Fourierovy řady
+
+\begin{equation} \label{eq:fourier_rada_cos}
+f(x) = \frac{1}{2}a_0 + \sum\limits_{n=1}^{\infty} a_n \cos(nx) + \sum\limits_{n=1}^{\infty} b_n \sin(nx).
+\end{equation}
+
+abychom zjistili koeficient $a_0$, zintegrujeme rovnici \eqref{eq:fourier_rada_cos} přes interval $[-\pi,\pi]$ a použijeme identity vypsané výše
+
+\begin{equation}
+\int\limits_{-\pi}^{\pi} f(x) dx  = \int\limits_{-\pi}^{\pi} \frac{a_0}{2} + \sum\limits_{n=1}^{\infty} a_n \cos(nx) + \sum\limits_{n=1}^{\infty} b_n \sin(nx) ~ dx = \pi a_0.
+\end{equation}
+
+K získání členu $a_n$ vynásobíme rovnici \eqref{eq:fourier_rada_cos} $\cos(nx)$ a zintegrujeme přes periodu
+
+\begin{equation}
+\int\limits_{-\pi}^{\pi} f(x) \cos(nx) dx  = \int\limits_{-\pi}^{\pi} \frac{a_0}{2} \cos(nx) + \sum\limits_{n=1}^{\infty} a_n \cos^2(nx) + \sum\limits_{n=1}^{\infty} b_n \sin(nx)\cos(nx) ~ dx = \pi a_n.
+\end{equation}
+
+Totéž pro $b_n$, ale násobíme $\sin(nx)$
+
+\begin{equation}
+\int\limits_{-\pi}^{\pi} f(x) \sin(nx) dx  = \int\limits_{-\pi}^{\pi} \frac{a_0}{2} \sin(nx) + \sum\limits_{n=1}^{\infty} a_n \cos(nx) \sin(nx) + \sum\limits_{n=1}^{\infty} b_n \sin^2(nx) ~ dx = \pi b_n.
+\end{equation}
+
+Pro koeficienty ve Fourierově řadě \eqref{eq:fourier_rada_cos} tedy platí
+
+
+\begin{equation}
+a_0 = \frac{1}{\pi} \int\limits_{-\pi}^{\pi}f(x)dx,
+\end{equation}
+
+\begin{equation}
+a_n = \frac{1}{\pi} \int\limits_{-\pi}^{\pi} f(x) \cos(nx) dx,
+\end{equation}
+
+\begin{equation}
+b_n = \frac{1}{\pi} \int\limits_{-\pi}^{\pi} f(x) \sin(nx) dx.
+\end{equation}
+
+
+Pokud chceme rozvinout funkci, která je periodická na intervalu $[-L/2,L/2]$ místo intervalu $[-\pi,\pi]$, lze použít jednoduchou substituci
+
+\begin{equation}
+x \equiv \frac{2 \pi x'}{L}, \qquad dx=\frac{2 \pi dx'}{L}.
+\end{equation}
+
+Nyní můžeme psát Fourierovu řadu pro libovolnou funkci, která je periodická na intervalu $[-L/2,L/2]$
+
+\begin{equation}
+f(x') = \frac{a_0}{2} + \sum\limits_{n=1}^{\infty} a_n \cos \left( \frac{2 \pi n x'}{L} \right) + \sum\limits_{n=1}^{\infty} b_n \sin \left( \frac{2 \pi n x'}{L} \right).
+\end{equation}z vyjádření
+
+\begin{equation}
+a_0 = \frac{2}{L} \int\limits_{-L/2}^{L/2} f(x') dx',
+\end{equation}
+
+\begin{equation}
+a_n = \frac{2}{L} \int\limits_{-L/2}^{L/2} f(x') \cos \left( \frac{2 \pi n x'}{L} \right) dx',
+\end{equation}
+
+\begin{equation}
+b_n = \frac{2}{L} \int\limits_{-L/2}^{L/2} f(x') \sin \left( \frac{2 \pi n x'}{L} \right) dx'.
+\end{equation}
+
+Funkce $f(x')$ samozřejmě nemusí být periodická na symetrickém intervalu, ale lze její periodu posunout na interval $[a-L/2,a+L/2]$. V tomto případě zůstanou fourierovy koeficienty i fourierova řada stejná. Dále lze Fourierovu transformaci lépe a kompaktněji vyjádřit pomocí komplexních exponenciálních funkcí, což vychází ze vztahů pro sinus a kosinus
+
+\begin{equation}
+\cos(x) = \frac{e^{ix} + e^{-ix}}{2}, \qquad sin(x) = \frac{e^{ix} - e^{-ix}}{2i}.
+\end{equation}
+
+Můžeme tedy rozvoj funkce $f(x)$ fourierovou řadou napsat ve tvaru
+
+\begin{equation}\label{eq:fourier_rada}
+f(x) = \sum\limits_{n=-\infty}^{\infty} c_n e^{i (2 \pi n x/L) }.
+\end{equation}
+
+Nyní můžeme vyjádřit koeficienty $c_n$ analogickým způsobem jako u kosinů a sinů.
+
+\begin{equation}
+\begin{aligned}
+\int\limits_{-L/2}^{L/2} f(x) e^{-i (2 \pi m x/L)} dx & = \int\limits_{-L/2}^{L/2} \left(\sum\limits_{n=-\infty}^{\infty} c_n e^{i(2 \pi n x/L)} \right) e^{-i (2 \pi m x/L)} dx \\
+& = \sum\limits_{n=-\infty}^{\infty} c_n \int\limits_{-L/2}^{L/2} e^{i[2 \pi (n-m) x/L]} dx \\
+& = \sum\limits_{n=-\infty}^{\infty} c_n L \delta_{mn} \\
+& = L c_m.
+\end{aligned}
+\end{equation}
+
+Z toho vyplývá
+
+\begin{equation}\label{eq:fourier_koef}
+c_n = \frac{1}{L} \int\limits_{-L/2}^{L/2} f(x) e^{-i (2 \pi m x/L)} dx,
+\end{equation}
+
+nebo lze $c_n$ vyjádřit pomocí koeficientů ve Fourierově řadě se siny a kosiny \eqref{eq:fourier_rada_cos}
+
+\begin{equation}
+c_n = 
+\begin{cases}
+\frac{1}{2}(a_n+ib_n) & \quad n<0 \\
+\frac{1}{2}a_0 & \quad n=0 \\
+\frac{1}{2}(a_n-ib_n) & \quad n>0\\
+\end{cases}
+\end{equation}
+
+Fourierovy koeficienty nám vlastně říkají, s jakou vahou musíme uvažovat siny a kosiny s periodou $L/n$, abychom dobře popsali zadanou funkci. Přirozeně se zde naskýtá otázka, co se stane, když vezmeme v úvahu pouze konečný počet Fourierových koeficientů. To je zřejmě nejlepší ilustrovat porovnáním grafů konečné Fourierovy řady a původní funkce.   
+
+
+\section{Fourierova transformace}
+
+K Fourierově transformaci lze velmi intuitivně přejít z Fourierovy řady. Fourierova transformace by sedal chápat jako limitní případ Fourierovy řady, kdy perioda rozvíjené funkce jde do nekonečna, což lze označit za neperiodickou funkci. Vezměme tzv. obdépníkovou funkci
+
+\begin{equation}
+{\rm rect}(x) =
+\begin{cases}
+1 & \quad |x|\leq a/2 \\
+0 & \quad |x|> a/2\\
+\end{cases}
+\end{equation}
+
+ze které uděláme periodickou funkci a to tak, že ji jednoduše umístíme do bodů, které odpovídají násobku zvolené periody $\lambda$, viz obrázek \ref{fig:rect}. Tohoto by šlo jednoduše dosáhnout pomocí konvoluce obdélníkové funkce se sumou delta funkcí umístěných v násobcích $\lambda$.
+
+\begin{figure}[h]
+\center
+\includegraphics[width=15cm]{rect.png}
+\caption{Funkce poskládaná z obdélníkových funkcí umístěných periodicky do násobků $\lambda$.}
+\label{fig:rect}
+\end{figure}
+
+Podíváme se na složky Fourierovy řady této funkce. Ty vyjdou podle rovnice \eqref{eq:fourier_rada} takto: 
+
+\begin{equation}
+c_n = \frac{a}{2}{\rm sinc}\left( \frac{2 \pi n x}{\lambda} \right) = \frac{a}{2}{\rm sinc} (n k x), \qquad k=\frac{2 \pi}{\lambda}.
+\end{equation}
+
+Na obrázcích \ref{fig:lambda}, \ref{fig:2lambda} a \ref{fig:4lambda}, kde jsou vykresleny Fourierovy koeficienty pro dříve zmíněnou funkci s různými periodami $\lambda_0$, $2\lambda_0$ a $4\lambda_0$. Čím více zvětšíme periodu, tím více se nahušťuje frekvenční spektrum. Z toho je zřejmé, že pokud periodu limitně pošleme k nekonečnu $\lambda \rightarrow \infty$, změní se diskrétní index $k_n=n k$ na spojitou proměnnou $k_n \rightarrow k_x$. Tímto přechodem se změní i suma ve výrazu \eqref{eq:fourier_rada} na integrál přes $dx$. Jednorozměrná Fourierova transformace a inverzní Fourierova transformace je pro definovaná takto:
+
+\begin{equation}\label{eq:four_trans}
+\widetilde{f}(k_x) = \mathscr{F}\{f(x)\} = \int\limits_{-\infty}^{\infty} f(x) e^{-i k_x x}~ dx,
+\end{equation}
+
+\begin{equation}\label{eq:four_trans_inv}
+f(x) = \mathscr{F}^{-1}\{\widetilde{f}(k_x)\} = \frac{1}{2 \pi}\int\limits_{-\infty}^{\infty} \widetilde{f}(k_x) e^{i k_x x}~ dk_x.
+\end{equation}
+
+\begin{figure}[h]
+\center
+\includegraphics[width=15cm]{1lambda.png}
+\caption{Fourierovy koeficienty pro pro periodu $\lambda$.}
+\label{fig:lambda}
+\end{figure}
+
+\begin{figure}[h]
+\center
+\includegraphics[width=15cm]{2lambda.png}
+\caption{Fourierovy koeficienty pro pro periodu $2\lambda$.}
+\label{fig:2lambda}
+\end{figure}
+
+\begin{figure}[h]
+\center
+\includegraphics[width=15cm]{4lambda.png}
+\caption{Fourierovy koeficienty pro pro periodu $4\lambda$.}
+\label{fig:4lambda}
+\end{figure}
+
+
+Nyní provedeme důkaz, že je tato tranformace inverzní, což znamená, že $\mathscr{F}^{-1}\{\mathscr{F}\{f(x)\}\} = f(x)$. Dosadíme \ref{eq:four_trans} do \eqref{eq:four_trans_inv}
+
+\begin{equation}
+f(x) = \frac{1}{2 \pi} \int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\infty} f(x') e^{ik_x(x-x')} ~ dk_x ~ dx'.
+\end{equation}
+
+Nyní použijeme trochu umělý krok, vynásobíme integrand $e^{-\epsilon^2 k_x^2}$ a uděláme z něj limitu $\epsilon \rightarrow 0$. Po provedení limity zjistíme, že integrand zůstává stejný
+
+\begin{equation}
+\begin{aligned}
+f(x) & = \lim_{\epsilon \to 0} \frac{1}{2 \pi} \int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\infty} f(x') e^{ik_x(x-x') -\epsilon^2 k_x^2} ~ dk_x ~ dx' =\\
+& = \lim_{\epsilon \to 0} \frac{1}{2 \pi} \int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\infty} f(x') e^{-\left(\epsilon k_x - \frac{i (x-x')}{2 \epsilon}\right)^2} e^{- \frac{(x-x')^2}{4\epsilon^2}} ~ dk_x ~ dx'.
+\end{aligned}
+\end{equation}
+
+Druhý člen lze vytknout před integrál přes $dk_x$ a první člen je Gaussova funkce. Integrál z Gaussovy funkce přes celý prostor je znám z tabulek
+
+\begin{equation}
+\int\limits_{-\infty}^{\infty} e^{-(ax+b)^2} dx = \frac{\sqrt{\pi}}{a}.
+\end{equation}
+
+\begin{equation}\label{eq:fourier_delta}
+f(x) = \lim_{\epsilon \to 0} \frac{\sqrt{\pi}}{2 \pi \epsilon} \int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\infty} f(x') e^{-\frac{(x-x')^2}{4\epsilon^2}}.
+\end{equation}
+
+Funkce $\delta(x-x') = \frac{1}{2 \sqrt{\pi} \epsilon} e^{-\frac{(x-x')^2}{4\epsilon^2}}$ je tzv. delta funkce, která má tu vlastnost, že ji vynásobíme s libovolnou funkci $f(x')$ a zintegrujeme přes celý prostor, dostaneme původní funkci, ale v bodě $x$, tedy $f(x)$. Je potřeba ještě ověřit, jestli je tato delta funkce normalizovaná
+
+\begin{equation}
+\int\limits_{-\infty}^{\infty}\delta(x-x') dx' = \int\limits_{-\infty}^{\infty} \frac{1}{2 \sqrt{\pi} \epsilon} e^{-\frac{(x-x')^2}{4\epsilon^2}} dx' = \frac{1}{2 \sqrt{\pi} \epsilon} \sqrt{\pi} 2 \epsilon = 1.
+\end{equation}
+
+Tím je oveřeno, že inverzní Fourierovy transformace po Fourierově transformaci dá identitu. $n$- dimenzionální Fourierova transformace vypadá analogicky k jednodimenzionální
+
+\begin{equation}\label{eq:n_four_trans}
+\widetilde{f}(\vec{k}) = \mathscr{F}\{f(\vec{r})\} = \int\limits_{-\infty}^{\infty} f(\vec{r}) e^{-i \vec{k}\vec{r}}~ d^n\vec{r},
+\end{equation}
+
+\begin{equation}\label{eq:n_four_trans_inv}
+f(\vec{r}) = \mathscr{F}^{-1}\{\widetilde{f}(\vec{k})\} = \frac{1}{(2 \pi)^n}\int\limits_{-\infty}^{\infty} \widetilde{f}(\vec{k}) e^{i \vec {k} \vec{r}}~ d^n \vec{k}.
+\end{equation}
+
+
+\section{Konvoluce}
+
+Konvoluce dvou funkcí $f(x)$ a $g(x)$ je definovaná takto:
+
+\begin{equation}\label{eq:konvoluce}
+(f \ast g)(x) = \int\limits_{-\infty}^{\infty} f(y) g(x-y)~ dy = \int\limits_{-\infty}^{\infty} f(x-y) g(y)~ dy.
+\end{equation}
+
+Prakticky to znamená, že vypočítáme plochu překryvu dvou funkcí, kdy jedna z nich je zrcadlená $g(y)\rightarrow g(-y) $ posunutá o $x$. Při vzájemném posunutí funkcí o $x$ je potom plocha překryvu rovna hodnoté, kterou nabývá výsledek konvoluce v bodě $x$. Velmi dobrou vizuální interpretaci konvoluce si lze udělat na základě gifu (NAPSAT KTEREJ GIF) v příloze. Zde je pár důležitých pravidel, která platí pro konvoluci:
+
+\begin{equation}
+f \ast g = g \ast f,
+\end{equation}
+
+\begin{equation}
+f \ast (g \ast h) = (f \ast g) \ast h,
+\end{equation}
+
+\begin{equation}
+f \ast(g + h) = (f \ast g) + (f \ast h),
+\end{equation}
+
+\begin{equation}
+a(f \ast g) = (a f)\ast g = f \ast(ag), \qquad a \in \Cbb,
+\end{equation}
+
+\begin{equation}
+(f \ast g)' = f \ast g' = f' \ast g.
+\end{equation}
+
+Poslední pravidlo dokážeme
+
+\begin{equation}
+\begin{aligned}
+(f \ast g)' & = \frac{d}{dx} \int\limits_{-\infty}^{\infty} f(y) g(x-y)~ dy = \int\limits_{-\infty}^{\infty} f(y) \frac{\partial g(x-y)}{\partial x} ~dy = f \ast g' \\
+&= \frac{d}{dx} \int\limits_{-\infty}^{\infty} f(x-y) g(y)~ dy = \int\limits_{-\infty}^{\infty} \frac{\partial f(x-y)}{\partial x} g(y)~ dy = f' \ast g
+\end{aligned}
+\end{equation}
+
+Velmi důležitý je konvoluční teorém
+
+\begin{equation}\label{eq:konvolucni_teorem}
+\mathscr{F}\{f \ast g\} = \mathscr{F}\{ f \} \cdot \mathscr{F}\{ g \},
+\end{equation}
+
+pro který provedeme i důkaz
+
+\begin{equation}
+\begin{aligned}
+\mathscr{F}\{f \ast g\} & = \int\limits_{-\infty}^{\infty} \left( \int\limits_{-\infty}^{\infty} f(y) g(x-y) ~dy \right) e^{-ikx}~ dx = \\
+& = \int\limits_{-\infty}^{\infty}  f(y) \left( \int\limits_{-\infty}^{\infty} g(x-y) e^{-ikx}~ dx \right) ~dy
+\end{aligned}
+\end{equation}
+
+Zavedeme substituci $t = x-y$, $dt=dx$,
+
+\begin{equation}
+\begin{aligned}
+\mathscr{F}\{f \ast g\} & = \int\limits_{-\infty}^{\infty}  f(y) \left( \int\limits_{-\infty}^{\infty} g(t) e^{-ik(t+y)} ~dt \right)~ dy = \\
+& = \int\limits_{-\infty}^{\infty}  f(y) e^{-iky}~ dy \int\limits_{-\infty}^{\infty} g(t) e^{-ikt}~dt = \mathscr{F}\{f\} \cdot \mathscr{F}\{g\}
+\end{aligned}
+\end{equation} 
+
+Díky tomuto teorému lze jednoduše počítat konvoluce různých funkcí (viz \eqref{eq:konv_FT}), což někdy bývá jednodušší, než počítání samotné konvoluce. Nejvíce použitelný je při numerickém počitání konvoluce vzorkovaných funkcí, což je popsáno v kapitole \ref{sec:dis_four}.
+
+\begin{equation}\label{eq:konv_FT}
+(f \ast g) = \mathscr{F}^{-1}\{\mathscr{F}\{f \ast g \} \} = \mathscr{F}^{-1}\{\mathscr{F}\{f \} \cdot \mathscr{F}\{g\}\}.
+\end{equation}
+
+\section{Fourierova transformace pole delta funkcí}
+\label{sec:delta_funkce}
+
+Nejdříve se podíváme na škálování delta funkce ve dvou a více dimenzích. Vezměme delta funkci $\delta(\vec{A\vec{r}})$, kde $A$ je lineární invertibilní zobrazení. Pak platí
+
+\begin{equation}
+\delta(A\vec{r}) = \frac{1}{|{\rm det}A|}\delta(\vec{r}).
+\end{equation}
+
+K důkazu použijeme definici delta funkce jako distribuce. Provedeme-li integrál z nějaké testovací funkce $\varphi(\vec{r})$ vynásobené delta funkcí $\delta(A\vec{r})$ dostaneme
+
+\begin{equation}
+\int\limits_{\Rbb^n} \delta(A\vec{r})\varphi(\vec{r}) ~ dx =\int\limits_{\Rbb^n} \delta(A\vec{r})\varphi(A^{-1}A\vec{r})\frac{1}{|{\rm det}A|} |{\rm det}A| ~ dx.
+\end{equation}
+
+Zavedeme substituci $\vec{u}=A\vec{r}$, $du=|{\rm det}A~ dx$
+
+\begin{equation}
+\frac{1}{|{\rm det}A|} \int\limits_{\Rbb^n} \delta(u)\varphi(A^{-1}\vec{u}) ~ du = \frac{1}{|{\rm det}A|}\varphi(A^{-1}0) = \frac{1}{|{\rm det}A|}\varphi(0),
+\end{equation}
+
+protože $A^{-1}$ je lineární. Je tedy vidět, že $\delta(A\vec{r})$ má stejný efekt jako $\frac{1}{|{\rm det}A|} \delta(\vec{r})$. 
+
+Nyní se podíváme, jakým způsobem se transformují pole delta funkce Fourierovou transformací. Pro jednoduchost se omezíme na dvě dimenze, ale analogicky to lze ukázat pro libovolný konečný počet dimenzí. Definujeme tzv. Diracovu comb funkci, což je nekonečné pole delta funkcí umístěných pravidelně po celém prostoru $S(\vec{r})$
+
+\begin{equation}\label{eq:comb_general}
+S(\vec{r}) = \sum\limits_{m,n} \delta(\vec{r}-m\vec{a}_1 - n\vec{a}_2), \qquad m,n = \Zbb.
+\end{equation}
+
+Tato funkce je vlastně jakousi charakteristickou funkcí dané mřížky s bází $\vec{a}_1$, $\vec{a}_2 \in \Rbb^2$. Zavedeme invertibilní lineární transformaci $A$ tak, aby platilo $\vec{a}_1 = A \vec{e}_1$ a $\vec{a}_2 = A\vec{e}_2$. Jde vlastně o změnu báze z $\vec{a}_1$, $\vec{a}_2$ na ortonormální euklidovskou bázi $\vec{e}_1 = (1,0)$, $\vec{e}_2 = (0,1)$. Funkci $s(\vec{r})$ můžeme přepsat
+
+\begin{equation}
+\begin{aligned}
+S(\vec{r})& = \sum\limits_{m,n} \delta(\vec{r}-m A \vec{e}_1 - n A \vec{e}_2) = \sum\limits_{m,n} \delta\left(A(A^{-1}\vec{r}-m\vec{e}_1 - n\vec{e}_2)\right) = \\
+& = \frac{1}{|{\rm det}A|} \sum\limits_{m,n} \delta(A^{-1}\vec{r}-m\vec{e}_1 - n\vec{e}_2).
+\end{aligned}
+\end{equation}
+
+Rozdělíme vektor $A^{-1}\vec{r}$ na složky v $\vec{e}_1$ a $\vec{e}_2$
+
+\begin{equation}
+A^{-1}\vec{r} = \vec{p} = p_1 \vec{e}_1 + p_2 \vec{e}_2.
+\end{equation} 
+
+Pak můžeme funkci $S(\vec{r})$ také rozdělit na složky $\vec{e}_1$ a $\vec{e}_2$
+
+\begin{equation}
+S(\vec{r}) = \frac{1}{|{\rm det}A|} \sum\limits_{m,n} \delta((p_1-m)\vec{e}_1 (p_2-n)\vec{e}_2) = \frac{1}{|{\rm det}A|} \sum\limits_{m} \delta(p_1-m) \sum\limits_{n}  \delta(p_2-n).
+\end{equation}
+
+Protožě jsou funkce $\sum\limits_{m}\delta(p_1-m)$ a $ \sum\limits_{n}\delta(p_2-n)$ periodické s periodou $1$, můžeme je zapsat ve tvaru Fourierovy řady
+
+\begin{equation}
+\sum\limits_{m}\delta(p_1-m) = \sum\limits_{m} c_m e^{i 2 \pi p_1 m}, \qquad \sum\limits_{n} \delta(p_2-n) = \sum\limits_{m} c_n e^{i 2 \pi p_1 n}.
+\end{equation}
+
+Pro koeficienty podle rovnice \eqref{eq:fourier_koef} platí
+
+\begin{equation}
+c_m = \int\limits_{-1/2}^{1/2} \sum\limits_{m} \delta(p_1-m) e^{-i 2 \pi p_1 m} d p_1 = 1, \qquad c_n = \int\limits_{-1/2}^{1/2} \sum\limits_{n} \delta(p_2-n) e^{-i 2 \pi p_2 n} d p_2 = 1,
+\end{equation}
+
+protože na intervalu $[-1/2,1/2]$ se nachází jen jeden člen z celé sumy a to delta funkce v nule, takže $e^{-i 2 \pi 0} = 1$. Když zavedeme vektor $\vec{n} = m\vec{e}_1 + n\vec{e}_2$ tak, můžeme funkci $S(\vec{r})$ přepsat do tvaru připraveného k Fourierově transformaci
+
+\begin{equation}	
+S(\vec{r}) = \frac{1}{|{\rm det}A|} \sum\limits_{m} e^{i 2 \pi p_1 m} \sum\limits_{n}  e^{i 2 \pi p_2 n} = \frac{1}{|{\rm det}A|} \sum\limits_{\vec{n}\in \Zbb^2} e^{i 2 \pi \vec{n} \vec{p}} = \frac{1}{|{\rm det}A|} \sum\limits_{\vec{n}\in \Zbb^2} e^{i 2 \pi \vec{n} A^{-1} \vec{r}}.
+\end{equation}
+
+Provedeme Frourierovu transformaci
+
+\begin{equation}
+\begin{aligned}
+\widetilde{S}(\vec{k}) & = \int\limits_{-\infty}^{\infty} \frac{1}{|{\rm det}A|} \sum\limits_{\vec{n}\in \Zbb^2} e^{i 2 \pi \vec{n} A^{-1} \vec{r}} e^{i \vec{k}\vec{r}} ~ d\vec{r} = \int\limits_{-\infty}^{\infty} \frac{1}{|{\rm det}A|} \sum\limits_{\vec{n}\in \Zbb^2} e^{i\left(\vec{k} + 2 \pi \vec{n} A^{-1}\right)\vec{r}} ~ d\vec{r} = \\
+& = \frac{1}{|{\rm det}A|} \sum\limits_{\vec{n}\in \Zbb^2} \delta \left(\vec{k} + 2 \pi \vec{n} A^{-1}\right).
+\end{aligned}
+\end{equation}
+
+Ještě převedeme $A^{-1}$ před $\vec{n}$ a označíme $\left(A^{-1}\right)^T = A^{-T}$
+
+\begin{equation}\label{eq:fourier_delta}
+\widetilde{S}(\vec{k}) = \frac{1}{|{\rm det}A|} \sum\limits_{\vec{n}\in \Zbb^2} \delta \left(\vec{k} + 2 \pi A^{-T} \vec{n}\right) = \frac{1}{|{\rm det}A|} \sum\limits_{m,n} \delta \left(\vec{k} + m \vec{b}_1 + n \vec{b}_2 \right),
+\end{equation}
+
+kde jsme zadefinovali vektory $\vec{b}_1$ a $\vec{b}_2$ takto
+
+\begin{equation}
+\vec{b}_1 = 2 \pi A^{-T} \vec{e}_1, \qquad \vec{b}_2 = 2 \pi A^{-T} \vec{e}_2.
+\end{equation}
+
+Je vidět, že v reciprokém prostoru vznikla zase mřížka z delta funkcí, ale tentokrát s bázovými vektory $\vec{b}_1$ a $\vec{b}_2$. Je zde pěkně videt původ slova reciproký, protože to znamená inverzní a transponovaný. Vektory reciproké a původní mřížky splňují známou relaci 
+
+\begin{equation}
+\vec{a}_i \vec{b}_j = \left( A \vec{e}_i \right) \left(2 \pi A^{-T} \vec{e}_j \right)= 2 \pi \left(A A^{-1}\right) \left(\vec{e}_i \vec{e}_j\right) = 2 \pi \delta_{ij}.
+\end{equation}
+
+
+\section{Vzorkování funkcí}
+\label{sec:vzorkovani}
+
+
+Pokud chceme využít počítačových simulací Fourierovské optiky, je třeba reprezentovat funkce jako diskrétní pole vzorkových hodnot. Abychom se co nejlépe přiblížili spojité povaze prostoru, je třeba "rozsekat" prostor na co nejvíce intervalů. Na druhou stranu nás ale omezuje výpočetní možnosti počítačů. Proto v praxi při vytváření simulací Fourierovské optiky bývá velmi důležité najít rovnováhu mezi dostatečným počtem vzorků a rozumnou výpočetní dobou. \\
+Představme dvoudimenzionální analytickou funkci $f(x,y)$, kterou chceme vyjádřit jako sérii vzorků
+
+\begin{equation}
+f(x,y) \rightarrow f(m \Delta x,n \Delta y),
+\end{equation}
+
+kde $\Delta x$ je vzorkovací interval ve směru osy $x$, $\Delta y$ ve směru osy $y$ a $m$, $n$ jsou celočíselné indexy daných vzorků. V praxi těchto vzorků samozřejmě musí být konečný počet, takže pokud máme celkově $M \times N$ vzorků ve směru osy $x$ a $y$, definují se běžně indexy $m$ a $n$ jako
+
+\begin{equation}
+m = -\frac{M}{2}, \dots ,\frac{M}{2}-1, \qquad n = -\frac{N}{2}, \dots ,\frac{N}{2}-1.
+\end{equation}
+
+Toto je běžné uspořádání vzorkovacích indexů, pokud $M$ a $N$ jsou sudé. Později se ukáže, že je velmi výhodné, z hlediska numerických výpočtů, mít sudý počet vzorků. Délka intervalu, kterou tímto vzorkováním pokryjeme ve směrech os $x$ a $y$ je zřejmě 
+
+\begin{equation}
+L_x = M \Delta x, \qquad L_y = N \Delta y.
+\end{equation}
+
+Samozřejmě je důležité, aby nejlépe všechny, nebo alespoň většina podstatných hodnot funkce $f(x,y)$, byly obsaženy v ploše $L_x \times L_y$. Dále je velmi důležité zhodnotit, zda jsou vzorkovací intervaly dostatečně jemné na to, aby dobře popsaly vlastnosti funkce $f(x,y)$. Pro funkce, které mají omezené frekvenční pásmo, což znamené, že podstatnou část frekvenčního rozložení této funkce lze omezit na konečnou oblast $B_x$ podél osy $k_x$ a $B_y$ podél $k_y$, lze podle Shannon-Nyquistova vzorkovacího teorému psát podmínku pro dostatečnou "jemnost" vzorkování takto
+
+\begin{equation}\label{eq:podm_nyquist}
+\Delta x < \frac{1}{2 B_x}, \qquad \Delta y < \frac{1}{2 B_y}.
+\end{equation}
+
+Při dané velikosti vzorkovacího intevalu $\Delta x$, resp. $\Delta y$ nám vyplývá podmínka, že frekvenční spektrum je omezeno na interval $[-k_{Nx}, k_{Nx}]$, resp. $ [-k_{Ny},k_{Ny}]$, kde jsme použili tzv. Nyquistovu frekvenci
+
+\begin{equation}
+k_{cx} = \frac{\pi}{ \Delta x}, \qquad k_{cy} = \frac{\pi}{ \Delta y}.
+\end{equation}
+
+Pokud není splněna podmínka \eqref{eq:podm_nyquist}, dochází k jevu zvanému aliasing, což je důsledek chybné interpretace vysokých frekvencí jako součást nízkých frekvencí.
+
+
+\section{Diskrétní Fourierova transformace}
+\label{sec:dis_four}
+
+Analytická dvourozměrná Fourierova transformace funkce $f(x,y)$ je
+
+\begin{equation}
+\widetilde{f}(k_x,k_y) = \int\limits_{-\infty}^{\infty} \int\limits_{-\infty}^{\infty} f(x,y) e^{-i(k_x x + k_y y)} ~dx ~dy.
+\end{equation}
+
+Nahradíme-li funkci $f(x,y)$ jí odpovídající vzorkovací funkcí $f(m \Delta x,n \Delta y)=g(m,n)$, je třeba, aby i frekvenční spektrum bylo diskrétní. Konvenčně se reciproký prostor rozdělí na $M$ a $N$ stejně šikorých intervalů. Od spojitých proměnných $k_x$ a $k_y$ tedy přejdeme k diskrétním
+
+\begin{equation}\label{eq:disk_frekvence}
+\begin{aligned}
+k_x \rightarrow \frac{2 \pi p}{M \Delta x}, \qquad p = -\frac{M}{2}, \dots, \frac{M}{2}-1, \\[10pt]
+k_y \rightarrow \frac{2 \pi q}{N \Delta y}, \qquad q = -\frac{N}{2}, \dots, \frac{N}{2}-1, \\
+\end{aligned}
+\end{equation}
+
+\begin{equation}
+\Delta k_x = \frac{2 \pi}{M \Delta x} = \frac{1}{L_x}, \qquad \Delta k_y = \frac{2 \pi}{N \Delta y} = \frac{1}{L_y}.
+\end{equation}
+
+V reciprokém prostoru funkce také přejde v diskrétní $\widetilde{f}(k_x,k_y) \rightarrow \widetilde{f}(p \Delta k_x, q \Delta k_y) = \widetilde{g}(p,q)$. Po zavedení substitucí \eqref{eq:disk_frekvence} lze vyjádřit diskrétní Fourierovu transformaci (DFT) takto
+
+\begin{equation}
+\widetilde{g}(p,q) = \sum_{m=-M/2}^{M/2-1} ~ \sum_{n=-N/2}^{N/2-1} g(m,n) e^{-i 2 \pi \left( \frac{pm}{M} + \frac{qn}{N} \right)}.
+\end{equation}
+
+Obdobně pro inverzní fourierovu transformaci
+
+\begin{equation}
+g(m,n) = \frac{1}{MN} \sum_{p=-M/2}^{M/2-1} ~ \sum_{q=-N/2}^{N/2-1} \widetilde{g}(p,q) e^{i 2 \pi \left( \frac{pm}{M} + \frac{qn}{N} \right)}.
+\end{equation}
+
+Faktor $1/MN$ je součinem prefaktoru u analytické Fourierovy transformace $\frac{1}{(2 \pi)^2}$ a elementů $\Delta x \Delta y \Delta k_x \Delta k_y$:
+
+\begin{equation}
+\Delta x \Delta y \Delta k_x \Delta k_y \frac{1}{(2 \pi)^2} = \Delta x \Delta y \frac{2 \pi}{M \Delta x} \frac{2 \pi}{N \Delta y} \frac{1}{(2 \pi)^2} = \frac{1}{MN}
+\end{equation}
+
+Nyní se podíváme na již zmíněný jev aliasing. Podívejme se pořádně, co se stane, když uděláme Fourierovu transformaci ze vzorkované funkce. Taková funkce se dá vyjádřit jako funkce původní vynásobená polem delta funkcí rozmístěných pravidelně ve směrech os $x$ a $y$ s krokem $\Delta x$ a $\Delta y$
+
+\begin{equation}
+S(x,y) = \sum\limits_{m,n} \delta (x-m\Delta x) \delta(y-n\Delta y).
+\end{equation}
+
+Když uděláme Fourierovu transformaci ze součinu $f(x,y) S(x,y)$ dostaneme podle konvolučního teorému \eqref{eq:konvolucni_teorem}
+
+\begin{equation}
+\mathscr{F}\{f \cdot S\} = \mathscr{F}\{f\} \ast \mathscr{F}\{S\}.
+\end{equation}
+
+V kapitole \ref{sec:delta_funkce} jsme odvodili co se stane s polem delta funkcí po Fourierově transformaci. V tomhle případě vypadá matice lineárního zobrazení z báze mřížky na ortonormální euklidovskou bázi takto
+
+\begin{equation}
+A = 
+\begin{pmatrix}
+\Delta x & 0 \\
+0 & \Delta y
+\end{pmatrix} , \qquad
+A^{-T} = 
+\begin{pmatrix}
+\frac{1}{\Delta x} & 0 \\
+0 & \frac{1}{\Delta y}
+\end{pmatrix}.
+\end{equation}
+
+Ze vztahu \eqref{eq:fourier_delta} dostaneme
+
+\begin{equation}
+\widetilde{S}(k_x,k_y) = \frac{1}{\Delta x \Delta y} \sum\limits_{m,n} \delta \left(k_x - m\frac{1}{\Delta x} \right) \delta \left(k_y - n\frac{1}{\Delta y} \right).
+\end{equation}
+
+Zjistili jsme, že když uděláme Fourierovu transformaci ze vzorkované funkce, tak dostaneme konvoluci Fourierovy transformace původní funkce $\mathscr{F}\{f(x,y)\}$ s polem delta funkcí $\widetilde{S}$. Konvoluce nějaké funkce $f(x,y)$ s polem delta funkcí vlastně znamená, že tu funkci umístíme do každého bodu, kde se nachází nějaká delta funkce a sečteme všechny příspěvky
+
+\begin{equation}
+\widetilde{f}(k_x,k_y) \ast \widetilde{S}(k_x,k_y) =  \frac{1}{\Delta x \Delta y} \sum\limits_{m,n} \widetilde{f}\left(k_x - m\frac{1}{\Delta x},k_y- n\frac{1}{\Delta y} \right).
+\end{equation} 
+
+Je vidět, že podmínka \eqref{eq:podm_nyquist} je s tímto úzce spojená. Pokud totiž zvětšíme např. $\Delta x$, tak se Fourierovy obrazy původní funkce $\widetilde{f}(k_x,k_y)$ k sobě přiblíží a může tím pádem dojít k překryvu sousedních Fourierových obrazů, což je přesně aliasing. Naopak, když $\Delta x$ změnšíme, Fourierovy obrazy se od sebe oddálí a k překryvu dochází méně. Tento jev je vyobrazen na obrázku \ref{fig:aliasing}.  
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{aliasing.png}
+\caption{Grafické znázornění aliasingu vzorkované Gaussovky.}
+\label{fig:aliasing}
+\end{figure}
+
+
+\section{Shift a rychlá Fourierova transformace}
+
+Při většině softwarových aplikacích se používají kladné indexy, proto je vhodnější definovat DFT takto
+
+\begin{equation}\label{eq:DFT}
+\widetilde{g}(p,q) = \sum_{m=0}^{M-1} ~ \sum_{n=0}^{N-1} g(m,n) e^{-i 2 \pi \left( \frac{pm}{M} + \frac{qn}{N} \right)},
+\end{equation}
+
+\begin{equation}
+g(m,n) = \frac{1}{MN} \sum_{p=0}^{M-1} ~ \sum_{q=0}^{N-1} \widetilde{g}(p,q) e^{i 2 \pi \left( \frac{pm}{M} + \frac{qn}{N} \right)}.
+\end{equation}
+
+Nelze ale jen posunout meze tak, aby začínaly na nule. Proto se musí nejdříve provést posunutí, nebo-li tzv. "shift" vzorkované funkce $g(m,n)$. Tento proces je jednodušší ilustrovat obrázky, viz \ref{fig:1D_shift}, \ref{fig:2D_shift}
+
+
+\begin{figure}[h]
+\begin{subfigure}{.5\textwidth}
+	\centering
+	\includegraphics[width=.8\linewidth]{1D-centered.png}
+	\caption{}
+	\label{fig:1D_centered}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+	\centering
+	\includegraphics[width=.8\linewidth]{1D-shifted.png}
+	\caption{}
+	\label{fig:1D_shifted}
+\end{subfigure}
+\caption{Shift rect funkce.}
+\label{fig:1D_shift}
+\end{figure}
+
+\begin{figure}[h]
+\begin{subfigure}{.5\textwidth}
+	\centering
+	\includegraphics[width=.8\linewidth]{2D_centered.png}
+	\caption{}
+	\label{fig:1D_centered}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+	\centering
+	\includegraphics[width=.8\linewidth]{2D_shifted.png}
+	\caption{}
+	\label{fig:1D_shifted}
+\end{subfigure}
+\caption{Shift 2D funkce.}
+\label{fig:2D_shift}
+\end{figure}
+
+
+
+
+
+V implementaci diskrétní Fourierovy transformace do počítačových simulací se většinou využívá algoritmu rychlé Fourierovy transformace (FFT). Omezíme se jen na jednodimenzionální DFT. Pro více dimenzí je postup analogický. Označíme si $g(n) = g_n$ a přeznačíme index $q \rightarrow k$, $\widetilde{g}(q) = \widetilde{g}_k$. Pak lze diskrétní Fourierovu transformaci rozložit takto
+
+\begin{equation}
+\begin{aligned}
+\widetilde{g}_k = \sum_{n=0}^{N-1} g_n e^{-i 2 \pi \frac{n k}{N}} = \sum_{n=0}^{N/2-1} g_{2n} e^{-i 2 \pi \frac{(2n) k}{N}} + \sum_{n=0}^{N/2-1} g_{2n+1} e^{-i 2 \pi \frac{(2n+1) k}{N}} =\\
+= \sum_{n=0}^{N/2-1} g_n^{sudé} e^{-i 2 \pi \frac{n k}{N/2}} + e^{-i 2 \pi \frac{k}{N}} \sum_{n=0}^{N/2-1} g_n^{liché} e^{-i 2 \pi \frac{n k}{N/2}} = \\
+= \sum_{n=0}^{N/2-1} \left(g_n^{sudé} + e^{-i 2 \pi \frac{k}{N}} g_n^{liché}\right) e^{-i 2 \pi \frac{n k}{N/2}}.
+\end{aligned}
+\end{equation}
+
+Tímto rozkladem můžeme místo sčítání $N$ prvků sčítat jen $N/2$ prvků, címž jsme si ušetřili značnou část výpočetní náročnosti. Hlavná pointa FFT je ale v tom, že tento rozklad lze dělat iterativně, takže jednotlivé sumy přes sudé i liché koeficienty lze zase rozdělit a tak dál. Původní výpočetní náročnost DFT je úměrná $N^2$, kdežto pomocí FFT $N\cdot {\rm ln} N$, což je značné zlepšení. Tento způsob rozkladu samozřejmě nejlépe funguje, pokud je celkový počet koeficientů $N$ mocninou 2, protože jakmile se tímto rozkladem dostaneme na lichý počet sčítanců v sumě, tak už dále takto rozkládat nemůžeme. V případě, že počet koeficientů není mocninou 2, lze rozkládat i jinými prvočísly, ale je to méně efektivní.
+
+
