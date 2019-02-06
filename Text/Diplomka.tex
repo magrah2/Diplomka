@@ -34,9 +34,9 @@
 %% pri volbe ``\usepackage[english]{babel}'' nefunguji ceske uvozovky pomoci \uv{..} - staci nahradit ``..''
 %%%%%%%%%%%%
 
-\usepackage[czech]{babel}
+%\usepackage[czech]{babel}
 % \usepackage[slovak]{babel}
-% \usepackage[english]{babel}
+\usepackage[english]{babel}
 % \usepackage{czech}
 % \usepackage{slovak}
 
@@ -183,6 +183,30 @@ zdrojů, které jsou v práci citovány.}
 \newcommand{\Zbb}{\mathbb{Z}}
 \newcommand{\Nbb}{\mathbb{N}}
 \setlength\parindent{0pt}
+
+\newcommand{\D}[1]{\ensuremath{\operatorname{d}\!{#1}}}
+\newcommand{\dif}[3][]{\frac{\D{{}^{#1}#2}}{\D{#3}^{#1}}}
+\newcommand{\pardif}[3][]{\frac{\partial^{#1}{#2}}{\partial{#3}^{#1}}}
+\newcommand{\pardift}[3]{\left(\pardif{#1}{#2}\right)_{#3}}
+\newcommand{\difs}[3][]{\partial_{#3}^{#1}{#2}}
+\newcommand{\op}[1]{\ensuremath{\hat{\mathbf{#1}}}}
+\newcommand{\mat}[1]{\ensuremath{\ifnum\pdfstrcmp{#1}{1}=0 \mathbb{1}\else \mathbf{#1}\fi}}
+\newcommand{\bra}[1]{\langle #1 \vert}
+\newcommand{\ket}[1]{\vert #1 \rangle}
+\newcommand{\bralr}[1]{\langle #1 \vert}
+\newcommand{\ketlr}[1]{\vert #1 \rangle}
+\newcommand{\braketlr}[2]{\left\langle\left. #1\right\vert #2\right\rangle}
+\newcommand{\braket}[2]{\langle #1\vert #2\rangle}
+\DeclareMathOperator{\tr}{\operatorname{tr}}
+\newcommand{\abs}[1]{{\left\vert #1\right\vert}}
+\newcommand{\mean}[1]{{\left\langle #1\right\rangle}}
+\newcommand{\un}[1]{\,\mathrm{#1}}
+\newcommand{\me}{\mathrm{e}}
+\newcommand{\mi}{\mathrm{i}}
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\at}[2]{\left. #1 \right\vert_{#2}}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%% VYTVOR POMOCNY SOUBOR PRO REJSTRIK %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
