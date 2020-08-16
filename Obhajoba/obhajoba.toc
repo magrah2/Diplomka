@@ -1,0 +1,6 @@
+\select@language {english}
+\beamer@sectionintoc {1}{Flat spacetime}{5}{0}{1}
+\beamer@sectionintoc {2}{Constantly expanding universe -- de~Sitter spacetime}{9}{0}{2}
+\beamer@sectionintoc {3}{Gravitational wave background}{20}{0}{3}
+\beamer@sectionintoc {4}{Questions}{30}{1}{4}
+\beamer@sectionintoc {5}{Bonus slides}{41}{1}{5}

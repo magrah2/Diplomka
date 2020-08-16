@@ -1,0 +1,69 @@
+\documentclass[10pt]{beamer}
+
+\usepackage[IL2]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage[english]{babel}
+\usepackage{pgf} 
+
+\usetheme[progressbar=frametitle]{metropolis}
+
+\usepackage{lmodern}
+\usepackage{mathpazo}
+\usepackage{listings}
+\usepackage{color}
+
+
+
+%%%%%% USER COMMANDS %%%%%%%%%%
+\newcommand{\Cbb}{\mathbb{C}}
+\newcommand{\Rbb}{\mathbb{R}}
+\newcommand{\Zbb}{\mathbb{Z}}
+\newcommand{\Nbb}{\mathbb{N}}
+
+\newcommand{\D}[1]{\ensuremath{\operatorname{d}\!{#1}}}
+\newcommand{\dif}[3][]{\frac{\D{{}^{#1}#2}}{\D{#3}^{#1}}}
+\newcommand{\pardif}[3][]{\frac{\partial^{#1}{#2}}{\partial{#3}^{#1}}}
+\newcommand{\pardift}[3]{\left(\pardif{#1}{#2}\right)_{#3}}
+\newcommand{\difs}[3][]{\partial_{#3}^{#1}{#2}}
+\newcommand{\opl}[1]{\ensuremath{\hat{\mathrm{#1}}}}
+\newcommand{\opg}[1]{\ensuremath{\hat{\boldsymbol{#1}}}}
+\newcommand{\mat}[1]{\ensuremath{\ifnum\pdfstrcmp{#1}{1}=0 \mathbb{1}\else \mathbf{#1}\fi}}
+\newcommand{\bra}[1]{\langle #1 \vert}
+\newcommand{\ket}[1]{\vert #1 \rangle}
+\newcommand{\bralr}[1]{\langle #1 \vert}
+\newcommand{\ketlr}[1]{\vert #1 \rangle}
+\newcommand{\braketlr}[2]{\left\langle\left. #1\right\vert #2\right\rangle}
+\newcommand{\braket}[2]{\langle #1\vert #2\rangle}
+\DeclareMathOperator{\tr}{\operatorname{tr}}
+\newcommand{\abs}[1]{{\left\vert #1\right\vert}}
+\newcommand{\mean}[1]{{\left\langle #1\right\rangle}}
+\newcommand{\un}[1]{\,\mathrm{#1}}
+\newcommand{\me}{\mathrm{e}}
+\newcommand{\mi}{\mathrm{i}}
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\at}[2]{\left. #1 \right\vert_{#2}}
+
+\newcommand{\hatx}{\hat{X}}
+\newcommand{\prim}[1]{{#1}^{\prime}}
+
+\newcommand{\nologo}{\setbeamertemplate{logo}{}}
+
+
+\title{SLitrani as an optical \\Monte-Carlo simulation tool}
+
+\date{\today}
+
+\author{Vojtěch Liška}
+
+
+
+\begin{document}
+
+\maketitle
+
+
+
+
+\end{document}

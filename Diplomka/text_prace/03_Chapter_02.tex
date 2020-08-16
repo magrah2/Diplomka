@@ -1,0 +1,175 @@
+\chapter{Flat spacetime}
+
+In this chapter, we will study the motion of strings in a~four dimensional flat spacetime. This will help both in showing how the equations of motion \eqref{eq:EL} are used and finding a~reference solution, which can be used to compare results on different backgrounds. This chapter follows the approach in \cite{zwiebach}.
+
+
+\section{Equations of motion and parameterization}
+
+First, we will choose such a~coordinate system, that $X^{0} = t$, $X^{1} = x$, $X^{2} = y$ and $X^{3} = z$. In flat spacetime, the metric is that of Minkowski
+
+\begin{equation}
+    \label{eq:minkowski}
+	\D s^2 = -\D t^2 + \D x^2 + \D y^2 + \D x^2
+\end{equation}
+
+\noindent
+We will choose a~static gauge, which means that $t = \tau$.
+This greatly simplifies the~derivatives 
+
+\begin{equation}
+        \difs[] {X^M} {\tau} = \begin{pmatrix} 1 & \dot{x} & \dot{y} & \dot{z} \end{pmatrix}^M \hspace{1cm}
+        \difs[] {X^M} {\sigma} = \begin{pmatrix} 0 & \prim{x} & \prim{y} & \prim{z} \end{pmatrix}^M
+\end{equation}
+
+\noindent
+where we denoted $\difs[] {x} {\tau} = \dot{x}$ and $\difs[] {x} {\sigma} = \prim{x}$.
+Also, since we have the freedom of choice of the $\sigma$ parameterization, we want the lines of constant $\sigma$ be perpendicular to lines of constant $\tau$
+
+\begin{equation}
+\label{eq:param_condition1_flat}
+    g_{M N} ~ \difs[] {X^M} {\tau} ~ \difs[] {X^N} {\sigma} = 0
+\end{equation}
+
+\noindent
+To be able to use the equations of motion \eqref{eq:EL}, we must first calculate the $\gamma_{\alpha \beta}$ from \cref{eq:gamma_def}.
+
+
+\begin{align}
+\label{eq:gamma_flat}
+    \gamma_{\tau \tau} & = g_{M N}~ \difs[] {X^{M}} {\tau} ~ \difs[] {X^{N}} {\tau} = -1 + \dot{x}^2 + \dot{y}^2 + \dot{z}^2 \\[5pt]
+    \gamma_{\tau \sigma} = \gamma_{\sigma \tau} & = g_{M N}~ \difs[] {X^{M}} {\tau} ~ \difs[] {X^{N}} {\sigma} =  0\\[5pt]
+    \gamma_{\sigma \sigma} & = g_{M N}~ \difs[] {X^{M}} {\sigma} ~ \difs[] {X^{N}} {\sigma} = x^{\prime 2} + y^{\prime 2} + z^{\prime 2}
+\end{align}
+
+\noindent
+Using this, we can calculate the determinant $\gamma$ and the inverse $\gamma^{\alpha \beta}$
+
+\begin{align}
+    \gamma = \det \gamma = \gamma_{\tau \tau} \gamma_{\sigma \sigma} - \gamma_{\sigma \tau} \gamma_{\tau \sigma} = \lp -1 + \dot{x}^2 + \dot{y}^2 + \dot{z}^2 \rp \lp x^{\prime 2} + y^{\prime 2} + z^{\prime 2} \rp \\[8pt]
+    \gamma^{\tau \tau} = \lp \gamma_{\tau \tau} \rp^{-1} = \frac{1}{-1 + \dot{x}^2 + \dot{y}^2 + \dot{z}^2} \\[8pt]
+    \gamma^{\sigma \sigma} = \lp \gamma_{\sigma \sigma} \rp^{-1} = \frac{1}{x^{\prime 2} + y^{\prime 2} + z^{\prime 2}}
+\end{align}
+
+\noindent
+Now, we are ready to insert these calculations into the equations of motion \eqref{eq:EL}. But first, lets simplify them a~little bit.
+
+\begin{equation}
+\label{eq:EOM_flat}
+    \begin{aligned}
+        &2 ~ \difs[] {\lp \sqrt{-\gamma} ~ \gamma^{\tau \tau} g_{K N} ~ \difs[] {X^{N}} {\tau} \rp} {\tau} +
+        2 ~ \difs[] {\lp \sqrt{-\gamma} ~ \gamma^{\sigma \sigma} g_{K N} ~ \difs[] {X^{N}} {\sigma} \rp} {\sigma} - \\[5pt]
+        &- \sqrt{-\gamma} ~\gamma^{\tau \tau} ~ \pardif[] {g_{M N}} {X^{K}} ~ \difs[] {X^{M}} {\tau} ~ \difs[] {X^{N}} {\tau}
+        - \sqrt{-\gamma} ~\gamma^{\sigma \sigma} ~ \pardif[] {g_{M N}} {X^{K}} ~ \difs[] {X^{M}} {\sigma} ~ \difs[] {X^{N}} {\sigma} = 0
+    \end{aligned}
+\end{equation}
+
+\noindent
+First, lets take a~look at the equation of motion for $K = 0$
+
+\begin{equation}
+    2 ~ \difs[] {\lp \sqrt{ \frac{ x^{\prime 2} + y^{\prime 2} + z^{\prime 2} }{1 - \dot{x}^2 - \dot{y}^2 - \dot{z}^2}} \rp}  {\tau} = 0
+\end{equation}
+
+\noindent
+Therefore, the term in parentheses must be constant in $\tau$.
+
+\begin{equation}
+\label{eq:EOM_flat_0}
+    C(\sigma) =  \sqrt{ \frac{ x^{\prime 2} + y^{\prime 2} + z^{\prime 2} }{1 - \dot{x}^2 - \dot{y}^2 - \dot{z}^2}}
+\end{equation}
+
+\noindent
+This is convenient, because this constant only corresponds to a~choice of $\sigma$ parameterization. Writing the rest of the equations of motion for $K = i \in \{1, 2, 3\}$ gives us
+
+\begin{equation}
+\label{eq:EOM_flat_i}
+    \begin{aligned}
+    - 2 ~ \difs[] {\lp \sqrt{ \frac{ x^{\prime 2} + y^{\prime 2} + z^{\prime 2}}{1 - \dot{x}^2 - \dot{y}^2 - \dot{z}^2}} ~ \difs[] {X^i} {\tau} \rp}  {\tau} 
+    + 2 ~ \difs[] {\lp \sqrt{ \frac{1 - \dot{x}^2 - \dot{y}^2 - \dot{z}^2}{ x^{\prime 2} + y^{\prime 2} + z^{\prime 2} }} ~ \difs[] {X^i} {\sigma} \rp}  {\sigma} = \\[8pt]
+    - 2 ~ \difs[] {\lp C(\sigma) ~ \difs[] {X^i} {\tau} \rp}  {\tau} 
+    + 2 ~ \difs[] {\lp \frac{1}{C(\sigma)} ~ \difs[] {X^i} {\sigma} \rp}  {\sigma} = 0.
+    \end{aligned}
+\end{equation}
+
+\noindent
+We can choose $\sigma$ in such a~way, that $C(\sigma) = 1$. This results in the equations of motion taking the form of the well known and expected wave equation
+
+\begin{equation}
+    \difs[2] {X^i} {\sigma} - \difs[2] {X^i} {\tau} = 0
+\end{equation}
+
+\noindent
+We can also rewrite the $\sigma$ parameterization condition into a~more convenient form
+
+\begin{equation}
+\label{eq:flat_gamma_constraint}
+    \begin{aligned}
+        \left[ x^{\prime 2} + y^{\prime 2} + z^{\prime 2} \right] &= - \left[- 1 + \dot{x}^2 + \dot{y}^2 + \dot{z}^2 \right] \\
+        & \Downarrow \\
+        \gamma_{\sigma \sigma} &= - \gamma_{\tau \tau}
+    \end{aligned}
+\end{equation}
+
+\noindent
+The fact, that with this choice of parameterization, the equations of motion are in its simplest form makes sense, since we just found out, that the $\gamma$ matrix is in a~diagonal form.
+
+\begin{equation}
+    \gamma_{\alpha \beta} = 
+    \begin{pmatrix}
+    -\gamma_{\sigma \sigma} & 0 \\
+    0 & \gamma_{\sigma \sigma}
+    \end{pmatrix}_{\alpha \beta}
+\end{equation}
+
+\noindent
+Choosing this parameterization is a~very good method, not just in flat spacetime, to make the equations of motion much easier to solve.
+
+To find the motion of a~relativistic string in flat spacetime, we need to solve four equations, which are collected here:
+
+\begin{align}
+    \text{equation of motion:} & \qquad \difs[2] {X^i} {\sigma} - \difs[2] {X^i} {\tau} = 0 
+    \label{eq:wave_eq}\\[10pt]
+    \text{parametrization condition:} & \qquad \gamma_{\sigma \sigma} = - \gamma_{\tau \tau}
+    \label{eq:param_cond_1}\\[10pt]
+    \text{parametrization condition:} & \qquad \gamma_{\sigma \tau} = \gamma_{\tau \sigma} = 0
+    \label{eq:param_cond_2}\\[10pt]
+    \text{boundary condition:} & \qquad \left. \difs[] {X^i} {\sigma} \right|_{\sigma = 0} = \left. \difs[] {X^i} {\sigma} \right|_{\sigma = \sigma_1} = 0
+    \label{eq:boundary_condition_flat}
+\end{align}
+
+%%%%%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%
+
+\section{Rest energy}
+\label{sec:rest_energy}
+
+We would like to find the rest energy $m$ of the string. This is given by
+
+\begin{equation}
+\label{eq:flat_rest_energy}
+    m^2 = -p_M p^M,
+\end{equation}
+
+\noindent
+where $p_M$ is given by \cite{zwiebach}
+
+\begin{equation}
+    p_M = \int\limits_0^{\sigma_1} \mathcal{P}^{\tau}_M \D \sigma = \int\limits_0^{\sigma_1} T_0 \sqrt{-\gamma} \gamma^{\tau \alpha} g_{MN} \difs[]{X^N}{\alpha} \D \sigma
+\end{equation}
+
+\noindent
+We can notice, that the inside of the integral is constant because of \cref{eq:flat_gamma_constraint}. It then reduces to
+
+\begin{equation}
+\label{eq:flat_momenta}
+    p_M = - \int\limits_0^{\sigma_1} T_0 g_{MN} \difs[]{X^N}{\tau} \D \sigma
+\end{equation}
+
+\noindent
+From this, we can calculate the rest energy of the string at any time, even in curved space. Also, the total energy of the string is given by
+
+\begin{equation}
+    E = p^t = - p_t = T_0 \int\limits_0^{\sigma_1} \D \sigma = T_0 \sigma_1
+\end{equation}
+
+\noindent
+This is a~consequence of \cref{eq:flat_gamma_constraint} and it means, that $\sigma_1$ gets fixed by this condition and is always $\sigma_1 = E/T_0$.
